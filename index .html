@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Miragema Cafe</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f6efe5;
+            color: #2b211c;
+        }
+
+        /* NAVBAR */
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 20px 8%;
+
+            background: rgba(38, 27, 21, 0.94);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            color: #e8bd72;
+            font-family: Georgia, serif;
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        nav {
+            display: flex;
+            gap: 28px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+        }
+
+        nav a:hover {
+            color: #e8bd72;
+        }
+
+
+        /* HERO */
+
+        .hero {
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+            padding: 120px 20px 80px;
+
+            background:
+                linear-gradient(
+                    rgba(38, 27, 21, 0.55),
+                    rgba(38, 27, 21, 0.72)
+                ),
+                url("https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&fit=crop&w=2000&q=85");
+
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            color: white;
+        }
+
+        .welcome {
+            color: #e8bd72;
+            letter-spacing: 5px;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 18px;
+        }
+
+        .hero h1 {
+            font-family: Georgia, serif;
+            font-size: clamp(52px, 9vw, 100px);
+            line-height: 1;
+            margin-bottom: 25px;
+        }
+
+        .hero p {
+            font-size: 19px;
+            max-width: 600px;
+            margin: auto;
+            color: #f5eee7;
+        }
+
+        .buttons {
+            margin-top: 35px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            background: #d6a84f;
+            color: #241a15;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            background: #efca7c;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid white;
+            color: white;
+        }
+
+
+        /* ABOUT */
+
+        .about {
+            padding: 110px 8%;
+
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 70px;
+            align-items: center;
+
+            background: #fffaf4;
+        }
+
+        .label {
+            color: #b27b22;
+            letter-spacing: 4px;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .about h2,
+        .menu h2,
+        .why h2,
+        .reviews h2,
+        .contact h2 {
+            font-family: Georgia, serif;
+            font-size: clamp(38px, 5vw, 55px);
+            line-height: 1.1;
+            margin-bottom: 25px;
+        }
+
+        .about-text p {
+            color: #6d5d51;
+            font-size: 17px;
+            line-height: 1.8;
+        }
+
+        .about-box {
+            min-height: 360px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+
+            border-radius: 25px;
+
+            background:
+                linear-gradient(
+                    rgba(48, 33, 25, 0.45),
+                    rgba(48, 33, 25, 0.65)
+                ),
+                url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1000&q=80");
+
+            background-size: cover;
+            background-position: center;
+
+            color: white;
+            padding: 40px;
+        }
+
+        .about-box h3 {
+            font-family: Georgia, serif;
+            font-size: 30px;
+            color: #f0c978;
+            margin-bottom: 12px;
+        }
+
+
+        /* MENU */
+
+        .menu {
+            padding: 110px 8%;
+            text-align: center;
+            background: #eee1d0;
+        }
+
+        .menu-intro {
+            color: #756458;
+            margin-bottom: 50px;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .menu-card {
+            background: #fffaf4;
+            padding: 35px 25px;
+            border-radius: 20px;
+
+            box-shadow: 0 10px 30px rgba(50, 30, 20, 0.08);
+
+            transition: 0.3s;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .food-icon {
+            font-size: 48px;
+            margin-bottom: 18px;
+        }
+
+        .menu-card h3 {
+            font-family: Georgia, serif;
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .menu-card p {
+            color: #76675d;
+            font-size: 14px;
+            margin-bottom: 18px;
+        }
+
+        .price {
+            color: #ad7419;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+
+        /* WHY US */
+
+        .why {
+            padding: 110px 8%;
+            text-align: center;
+            background: #2c211c;
+            color: white;
+        }
+
+        .why .label {
+            color: #e5b963;
+        }
+
+        .why-grid {
+            margin-top: 50px;
+
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .why-card {
+            padding: 40px 25px;
+
+            border: 1px solid rgba(255,255,255,0.13);
+            border-radius: 20px;
+        }
+
+        .why-card .icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .why-card h3 {
+            color: #e7bd70;
+            margin-bottom: 12px;
+        }
+
+        .why-card p {
+            color: #cfc4bc;
+        }
+
+
+        /* REVIEWS */
+
+        .reviews {
+            padding: 110px 8%;
+            text-align: center;
+            background: #fffaf4;
+        }
+
+        .review-grid {
+            margin-top: 50px;
+
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .review {
+            padding: 35px;
+            border-radius: 20px;
+            background: #f3e9dc;
+        }
+
+        .stars {
+            color: #c28a27;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .review p {
+            color: #62544a;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .review strong {
+            color: #33251e;
+        }
+
+
+        /* CONTACT */
+
+        .contact {
+            padding: 110px 20px;
+            text-align: center;
+
+            background:
+                linear-gradient(
+                    rgba(42, 30, 23, 0.86),
+                    rgba(42, 30, 23, 0.92)
+                ),
+                url("https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=1800&q=80");
+
+            background-size: cover;
+            background-position: center;
+
+            color: white;
+        }
+
+        .contact .label {
+            color: #e7bc6c;
+        }
+
+        .contact h2 {
+            color: white;
+        }
+
+        .contact > p {
+            color: #ded3cb;
+        }
+
+        .contact-info {
+            margin: 30px 0;
+            line-height: 2;
+            color: #eee4dc;
+        }
+
+
+        /* FOOTER */
+
+        footer {
+            padding: 45px 20px;
+            text-align: center;
+            background: #19110d;
+            color: white;
+        }
+
+        footer h3 {
+            font-family: Georgia, serif;
+            color: #e5b967;
+            font-size: 25px;
+            margin-bottom: 10px;
+        }
+
+        footer p {
+            color: #aaa099;
+        }
+
+        .copyright {
+            margin-top: 20px;
+            font-size: 13px;
+        }
+
+
+        /* MOBILE */
+
+        @media (max-width: 900px) {
+
+            .about {
+                grid-template-columns: 1fr;
+            }
+
+            .menu-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .why-grid,
+            .review-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .navbar {
+                padding: 17px 5%;
+            }
+
+            .logo {
+                font-size: 19px;
+            }
+
+            nav {
+                gap: 12px;
+            }
+
+            nav a {
+                font-size: 12px;
+            }
+
+            .hero h1 {
+                font-size: 50px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about,
+            .menu,
+            .why,
+            .reviews {
+                padding: 80px 6%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <header class="navbar">
+        <div class="logo">Miragema Cafe</div>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#menu">Menu</a>
+            <a href="#reviews">Reviews</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+
+    <!-- HERO -->
+
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <div class="welcome">WELCOME TO MIRAGEMA</div>
+
+            <h1>Good Coffee.<br>Good Moments.</h1>
+
+            <p>
+                A cozy place for delicious food, freshly brewed coffee
+                and beautiful moments with the people you love.
+            </p>
+
+            <div class="buttons">
+                <a href="#menu" class="btn">Explore Our Menu</a>
+                <a href="#contact" class="btn btn-outline">Visit Us</a>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+
+    <section class="about" id="about">
+
+        <div class="about-text">
+
+            <div class="label">OUR STORY</div>
+
+            <h2>More Than Just A Cafe</h2>
+
+            <p>
+                Miragema Cafe is a warm and welcoming space where
+                great food meets great company. From your morning
+                coffee to an evening with friends, every visit is
+                made special.
+            </p>
+
+        </div>
+
+        <div class="about-box">
+
+            <h3>Fresh • Warm • Delicious</h3>
+
+            <p>
+                Your neighborhood cafe for coffee,
+                food and good vibes.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- MENU -->
+
+    <section class="menu" id="menu">
+
+        <div class="label">OUR MENU</div>
+
+        <h2>Something For Everyone</h2>
+
+        <p class="menu-intro">
+            A few of our customer favorites.
+        </p>
+
+        <div class="menu-grid">
+
+            <div class="menu-card">
+                <div class="food-icon">☕</div>
+                <h3>Classic Coffee</h3>
+                <p>Freshly brewed and rich in flavor.</p>
+                <div class="price">₹120</div>
+            </div>
+
+            <div class="menu-card">
+                <div class="food-icon">🥪</div>
+                <h3>Veg Sandwich</h3>
+                <p>Fresh vegetables with our special filling.</p>
+                <div class="price">₹180</div>
+            </div>
+
+            <div class="menu-card">
+                <div class="food-icon">🍕</div>
+                <h3>Cheese Pizza</h3>
+                <p>Hot, cheesy and loaded with toppings.</p>
+                <div class="price">₹250</div>
+            </div>
+
+            <div class="menu-card">
+                <div class="food-icon">🍰</div>
+                <h3>Chocolate Cake</h3>
+                <p>Rich, soft and perfect for dessert.</p>
+                <div class="price">₹160</div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- WHY US -->
+
+    <section class="why">
+
+        <div class="label">WHY MIRAGEMA?</div>
+
+        <h2>Made With Love</h2>
+
+        <div class="why-grid">
+
+            <div class="why-card">
+                <div class="icon">☕</div>
+                <h3>Fresh Coffee</h3>
+                <p>
+                    Freshly prepared coffee made for
+                    every coffee lover.
+                </p>
+            </div>
+
+            <div class="why-card">
+                <div class="icon">🍴</div>
+                <h3>Quality Food</h3>
+                <p>
+                    Delicious food prepared with
+                    fresh ingredients.
+                </p>
+            </div>
+
+            <div class="why-card">
+                <div class="icon">❤️</div>
+                <h3>Cozy Atmosphere</h3>
+                <p>
+                    A comfortable space to relax,
+                    meet and enjoy.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- REVIEWS -->
+
+    <section class="reviews" id="reviews">
+
+        <div class="label">CUSTOMER LOVE</div>
+
+        <h2>What People Say</h2>
+
+        <div class="review-grid">
+
+            <div class="review">
+                <div class="stars">★★★★★</div>
+
+                <p>
+                    "Amazing coffee and such a beautiful
+                    atmosphere. Loved the experience!"
+                </p>
+
+                <strong>— Happy Customer</strong>
+            </div>
+
+            <div class="review">
+                <div class="stars">★★★★★</div>
+
+                <p>
+                    "The food was delicious and the staff
+                    were really welcoming."
+                </p>
+
+                <strong>— Happy Customer</strong>
+            </div>
+
+            <div class="review">
+                <div class="stars">★★★★★</div>
+
+                <p>
+                    "Perfect place to sit, relax and
+                    enjoy a good cup of coffee."
+                </p>
+
+                <strong>— Happy Customer</strong>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CONTACT -->
+
+    <section class="contact" id="contact">
+
+        <div class="label">VISIT US</div>
+
+        <h2>Come Say Hello 👋</h2>
+
+        <p>
+            We'd love to welcome you at Miragema Cafe.
+        </p>
+
+        <div class="contact-info">
+            📍 Your Cafe Address<br>
+            📞 +91 XXXXX XXXXX<br>
+            🕐 Open Daily: 10:00 AM – 10:00 PM
+        </div>
+
+        <a href="tel:+91XXXXXXXXXX" class="btn">
+            Call Us
+        </a>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <h3>Miragema Cafe</h3>
+
+        <p>
+            Good food. Good coffee. Good moments.
+        </p>
+
+        <p class="copyright">
+            © 2026 Miragema Cafe. All Rights Reserved.
+        </p>
+
+    </footer>
+
+</body>
+</html>
